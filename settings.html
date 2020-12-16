@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./utils/navbar.css">
+    <link rel="stylesheet" href="settings.css">
+    <title>Settings</title>
+</head>
+<body>
+    <?php include_once('./utils/navbar.html');?>
+
+    <div id="modal">
+        <form action="./settings.php" method='post' id="formLibCat" class="dialog">
+            <label for="libelle">Libelle transction :</label>
+            <input type="text" name="libelle" id="libelle"><br>
+            <label for="cat">Catégorie :</label>
+            <select name="cat" id="cat">
+                <option value="">------------</option>
+                <?php     remplirOption(getCat(), count(getCat()), "Cat", "")?>
+            </select><br>
+            <input type="submit" value="Créer">
+        </form>
+
+        <form action="./settings.php" class="dialog" id="formCat" method="post">
+            <label for="abrCat">Categorie Abrégé :</label>
+            <input type="text" name="abrCat" id="abrCat"><br>
+            <label for="libelleCat">Libelle  de la catégorie:</label>
+            <input type="text" name="libelleCat" id="libelleCat"><br>
+            <input type="submit" value="Créer">
+        </form>
+    </div>
+
+
+
+    <div class="frame" id='frame'>
+        <form action="./settings.php" method="post">
+            <label for="nom">Nom :</label>
+            <input type="text" name="nom" id="nom"/><br>
+
+            <label for="date">Date départ differenciel :</label>
+            <input type="date" name="date" id="date"/><br>
+
+            <input type="submit" >
+        </form>
+
+        <div>
+            <p>Liste Libelle / Catégorie <img src="./images/add_box-24px.svg" alt="add" class="add-icon" id="addIcon"></p>
+            <?php getTab(getCatLib()) ?>
+        </div>
+
+        <div>
+            <p>Catégorie <img src="./images/add_box-24px.svg" alt="add" class="add-icon" id="addCat"></p>
+            <?php getTab(getCat()) ?>
+        </div>
+    </div>
+
+    <script src="./utils/utils.js"></script>
+    <script src="./settings.js"></script>
+</body>
+</html>

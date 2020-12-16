@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.sidenav {
+    height: 100%;
+    width: 5%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .icon-menu{
+    cursor: pointer;
+    width: 80%;
+  }
+
+  .frame{
+    margin-left: 5%;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  input, select,button {
+
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+input[type=submit],button{
+    cursor: pointer;
+}
+
+input[type=submit]:hover,button:hover{
+    opacity: 0.75;
+    transition-duration: 0.15s;
+}
+
+fieldset{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+  border: none ;
+  border-top: 1px solid grey;
+
+}

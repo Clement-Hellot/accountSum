@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./node_modules/chart.js/dist/Chart.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <?php include_once('./utils/navbar.html');?>
+
+  <div class="frame">
+    <header>
+      <p class="title">Bonjour <?php echo getLogin()["prenom"] ?></p>
+      <fieldset id="solde">
+        <legend>Solde</legend>
+        <?php echo getSolde(getMaxDate())?>€
+      </fieldset>
+      <form action="./update.php" method="post"  enctype="multipart/form-data">
+        <input type="file" name="comptesFile" id="comptesFile">
+      <input type="submit" value="Update"></input>
+      </form>
+    </header>
+
+
+
+    <fieldset class="differenciel">
+      <legend>Différenciel</legend>
+      <p>Solde <?php echo getLogin()["date_start"] ?> : <b><?php echo getSolde(getLogin()["date_start"]) ?>€</b></p>
+      <hr>
+      <p>Solde <?php echo getMaxDate()?> : <b><?php echo getSolde(getMaxDate());  ?>€</b></p>
+      <hr>
+      <p>Différenciel : <b><?php echo getSolde(getMaxDate())-getSolde(getLogin()["date_start"]);  ?>€</b></p>
+      <hr>
+
+    </fieldset>
+
+    <div class="account">
+      <fieldset>
+        <legend>Account</legend>
+
+        <form action="./index.php" method="post">
+          <select name="date" id="slct-date" onchange="submit()">
+            <option value="" selected="selected">------------</option>
+            <?php remplirOption(getMois(),count(getMois()),"mois",getSelectMonth()) ?>
+          </select></form>
+
+        <?php getTabAccount(getSelectMonth()); ?>
+
+      </fieldset>
+    </div>
+
+
+
+    <div id="chart-container-disk">
+      <button id="disk-3d">3 jours</button>
+      <button id="disk-1s">1 semaine</button>
+      <button id="disk-1m">1 mois</button>
+      <button id="disk-1y">1 ans</button>
+      <div>
+        <canvas id="graph-diskY"></canvas>
+      </div>
+      <div>
+        <canvas id="graph-diskM"></canvas>
+      </div>
+      <div>
+        <canvas id="graph-diskS"></canvas>
+      </div>
+      <div>
+        <canvas id="graph-diskD"></canvas>
+      </div>
+    </div>
+
+    <div id="chart-container">
+      <button id="btn-3d">3 jours</button>
+      <button id="btn-1s">1 semaine</button>
+      <button id="btn-1m">1 mois</button>
+      <button id="btn-1y">1 ans</button>
+      <canvas id="graphCanvasY"></canvas>
+      <canvas id="graphCanvasM"></canvas>
+      <canvas id="graphCanvasS"></canvas>
+      <canvas id="graphCanvasD"></canvas>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+  <script src="./utils/utils.js"></script>
+</body>
+
+</html>
